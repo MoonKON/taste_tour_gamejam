@@ -16,16 +16,16 @@ public class Drop : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
-        initialPosition = transform.position; // ±£´æ³õÊ¼Î»ÖÃ
-        StartCoroutine(MoveDrop()); // ¿ªÊ¼ÒÆ¶¯ÒºµÎ
+        initialPosition = transform.position; // ä¿å­˜åˆå§‹ä½ç½®
+        StartCoroutine(MoveDrop()); // å¼€å§‹ç§»åŠ¨æ¶²æ»´
     }
 
     private IEnumerator MoveDrop()
     {
         while (true)
         {
-            rb.bodyType = RigidbodyType2D.Dynamic; // Ê¹ÒºµÎ´¦ÓÚ¶¯Ì¬×´Ì¬
-            yield return new WaitForSeconds(1f); // ¿ØÖÆÏÂÂä¼ä¸ô
+            rb.bodyType = RigidbodyType2D.Dynamic;
+            yield return new WaitForSeconds(1f); // æ§åˆ¶ä¸‹è½é—´éš”
             transform.Translate(Vector2.down * speed * Time.deltaTime);
 
         }
@@ -36,10 +36,10 @@ public class Drop : MonoBehaviour
 
         if (collision.CompareTag("Ground") || collision.CompareTag("Sea"))
         {
-            rb.bodyType = RigidbodyType2D.Static; // Í£Ö¹ÒÆ¶¯
-            anim.SetBool("Touch", true); // ²¥·Å´¥Åö¶¯»­
+            rb.bodyType = RigidbodyType2D.Static; // åœæ­¢ç§»åŠ¨
+            anim.SetBool("Touch", true); // æ’­æ”¾è§¦ç¢°åŠ¨ç”»
 
-            // µÈ´ı¼¸ÃëºóÖØÖÃÎ»ÖÃ²¢ÖØĞÂ¿ªÊ¼
+            // ç­‰å¾…å‡ ç§’åé‡ç½®ä½ç½®å¹¶é‡æ–°å¼€å§‹
             StartCoroutine(ResetDrop());
         }
 
@@ -65,10 +65,10 @@ public class Drop : MonoBehaviour
 
     private IEnumerator ResetDrop()
     {
-        yield return new WaitForSeconds(1f); // µÈ´ıÒ»¶ÎÊ±¼ä
-        transform.position = initialPosition; // ÖØÖÃÎ»ÖÃ
+        yield return new WaitForSeconds(1f); //ç­‰å¾…æ—¶é—´
+        transform.position = initialPosition;
         anim.SetBool("Touch", false);
-        rb.bodyType = RigidbodyType2D.Dynamic; // ÖØĞÂÆôÓÃ¶¯Ì¬
+        rb.bodyType = RigidbodyType2D.Dynamic;
     }
 }
 
