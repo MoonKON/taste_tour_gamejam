@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class HorizontalMoverRightReset : MonoBehaviour
 {
-    [SerializeField] private float moveDistance = 5f; // ¿ÉÔÚ²Ù×÷Ì¨¸ü¸ÄµÄÒÆ¶¯¾àÀë
-    [SerializeField] private float speed = 2f;        // ¿ÉÔÚ²Ù×÷Ì¨¸ü¸ÄµÄËÙ¶È
+    [SerializeField] private float moveDistance = 5f; 
+    [SerializeField] private float speed = 2f; 
     [SerializeField] private bool right = true;
     [SerializeField] private int damage = 1;
     private bool hasDealtDamage = false;
@@ -15,7 +15,7 @@ public class HorizontalMoverRightReset : MonoBehaviour
 
     void Start()
     {
-        // ¼ÇÂ¼ÎïÌåµÄ³õÊ¼Î»ÖÃ
+        // è®°å½•åˆå§‹ä½ç½®
         startPosition = transform.position;
         if (right) {
             moveDistance = moveDistance * 1;
@@ -28,13 +28,11 @@ public class HorizontalMoverRightReset : MonoBehaviour
 
     void Update()
     {
-        // ÏòÓÒÒÆ¶¯
         transform.position = Vector3.MoveTowards(transform.position, startPosition + new Vector3(moveDistance, 0, 0), speed * Time.deltaTime);
-
-        // Èç¹ûÎïÌåµ½´ï×îÓÒ±ß£¬ÖØÖÃµ½×î×ó±ß
+        // å¦‚æœç‰©ä½“åˆ°è¾¾æœ€å³è¾¹ï¼Œé‡ç½®åˆ°æœ€å·¦è¾¹
         if (Vector3.Distance(transform.position, startPosition + new Vector3(moveDistance, 0, 0)) < 0.1f)
         {
-            // ½«ÎïÌåÖØÖÃµ½×î×ó±ß£¨³õÊ¼Î»ÖÃ£©
+            // é‡ç½®åˆ°åˆå§‹ä½ç½®
             transform.position = startPosition;
         }
     }
