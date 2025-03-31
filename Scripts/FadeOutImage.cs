@@ -9,16 +9,12 @@ public class FadeOutImage : MonoBehaviour
 
     void Start()
     {
-       
         StartCoroutine(FadeOut());
     }
 
     private IEnumerator FadeOut()
     {
-       
         yield return new WaitForSeconds(1f);
-
-   
         float startAlpha = canvasGroup.alpha;
         float time = 0f;
 
@@ -28,8 +24,6 @@ public class FadeOutImage : MonoBehaviour
             canvasGroup.alpha = Mathf.Lerp(startAlpha, 0, time / fadeDuration);
             yield return null; 
         }
-
- 
         canvasGroup.alpha = 0;
     }
 }
