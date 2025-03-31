@@ -4,7 +4,7 @@ using UnityEngine.Video;
 
 public class Movie : MonoBehaviour
 {
-    public VideoPlayer videoPlayer;  // 拖动你的 VideoPlayer 对象到这里
+    public VideoPlayer videoPlayer;
 
     void Start()
     {
@@ -13,15 +13,13 @@ public class Movie : MonoBehaviour
             Debug.LogError("No VideoPlayer assigned.");
             return;
         }
-
-        // 监听视频播放结束事件
+        // 鐩戝惉瑙嗛鎾斁缁撴潫浜嬩欢
         videoPlayer.loopPointReached += OnVideoEnd;
     }
-
-    // 视频播放结束时调用此方法
+    
+    // 瑙嗛鎾斁缁撴潫鏃惰皟鐢ㄦ鏂规硶
     private void OnVideoEnd(VideoPlayer vp)
     {
-        // 切换到下一个场景
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
