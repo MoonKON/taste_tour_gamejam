@@ -16,8 +16,8 @@ public class Move : MonoBehaviour
     [SerializeField] private float walkSpeed;
     [SerializeField] private float jumpForce;
     [SerializeField] private float runSpeed;
-    [SerializeField] private int maxJumps = 2;  // 最大跳跃次数设置为2，用于二段跳
-    private int jumpCount;  // 追踪当前已跳跃次数
+    [SerializeField] private int maxJumps = 2;  //double jump
+    private int jumpCount;  //Track the current number of jumps
     [SerializeField] private AudioSource jumpSoundEffect;
 
     private enum MovementState {stand, running,jumping, walking}
@@ -35,7 +35,7 @@ public class Move : MonoBehaviour
     void Update()
     {
         float dirX = Input.GetAxisRaw("Horizontal");
-        // 判断是否按下了跑步键（Shift）
+        // Determine if the Run key is pressed (Shift)
         float moveSpeed = Input.GetKey(KeyCode.LeftShift) ? runSpeed : walkSpeed;
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
