@@ -5,27 +5,24 @@ using UnityEngine;
 
 public class WayPointFunc : MonoBehaviour
 {
-    [SerializeField] private float moveDistance = 5f; // ¿ÉÔÚ²Ù×÷Ì¨¸ü¸ÄµÄÒÆ¶¯¾àÀë
-    [SerializeField] private float speed = 2f;        // ¿ÉÔÚ²Ù×÷Ì¨¸ü¸ÄµÄËÙ¶È
+    [SerializeField] private float moveDistance = 5f; // å¯ç§»åŠ¨è·ç¦»
+    [SerializeField] private float speed = 2f;        // é€Ÿåº¦
 
     private Vector3 startPosition;
     private bool movingDown = true;
 
     void Start()
     {
-        // ¼ÇÂ¼ÎïÌåµÄ³õÊ¼Î»ÖÃ
+        // è®°å½•ç‰©ä½“çš„åˆå§‹ä½ç½®
         startPosition = transform.position;
     }
 
     void Update()
     {
-        // ¸ù¾İ·½ÏòÅĞ¶ÏÎïÌåÊÇÏòÏÂ»¹ÊÇÏòÉÏÒÆ¶¯
         if (movingDown)
         {
-            // ÏòÏÂÒÆ¶¯
             transform.position = Vector3.MoveTowards(transform.position, startPosition - new Vector3(0, moveDistance, 0), speed * Time.deltaTime);
-
-            // Èç¹ûÎïÌåµ½´ïÁËÄ¿±ê¾àÀë£¬Ôò¸Ä±ä·½ÏòÎªÏòÉÏ
+            // å¦‚æœç‰©ä½“åˆ°è¾¾äº†ç›®æ ‡è·ç¦»ï¼Œåˆ™æ”¹å˜æ–¹å‘ä¸ºå‘ä¸Š
             if (Vector3.Distance(transform.position, startPosition - new Vector3(0, moveDistance, 0)) < 0.1f)
             {
                 movingDown = false;
@@ -33,10 +30,8 @@ public class WayPointFunc : MonoBehaviour
         }
         else
         {
-            // ÏòÉÏÒÆ¶¯
             transform.position = Vector3.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
-
-            // Èç¹ûÎïÌå»Øµ½³õÊ¼Î»ÖÃ£¬Ôò¸Ä±ä·½ÏòÎªÏòÏÂ
+            // å¦‚æœç‰©ä½“å›åˆ°åˆå§‹ä½ç½®ï¼Œåˆ™æ”¹å˜æ–¹å‘ä¸ºå‘ä¸‹
             if (Vector3.Distance(transform.position, startPosition) < 0.1f)
             {
                 movingDown = true;
