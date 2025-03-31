@@ -4,11 +4,11 @@ using UnityEngine.SceneManagement;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    private int lastLevelIndex; // ¼ÇÂ¼½ÇÉ«ËÀÍöÇ°µÄ¹Ø¿¨
+    private int lastLevelIndex; //è®°å½•è§’è‰²æ­»äº¡å‰çš„å…³å¡
 
     void Awake()
     {
-        // È·±£ LevelManager ÔÚ³¡¾°¼ä±£³ÖÎ¨Ò»´æÔÚ
+        //ç¡®ä¿LevelManageråœ¨åœºæ™¯å†…æ˜¯å”¯ä¸€å­˜åœ¨çš„
         if (instance == null)
         {
             instance = this;
@@ -20,19 +20,18 @@ public class LevelManager : MonoBehaviour
         }
     }
 
-    // ¼ÇÂ¼µ±Ç°¹Ø¿¨µÄË÷Òı
+    //è®°å½•å½“å‰å…³å¡çš„ç´¢å¼•
     public void SetLastLevelIndex()
     {
         lastLevelIndex = SceneManager.GetActiveScene().buildIndex;
     }
 
-    // ÇĞ»»µ½ËÀÍö³¡¾°
+    //åˆ‡æ¢åˆ°æ­»äº¡åœºæ™¯
     public void LoadDeadScene()
     {
-        SceneManager.LoadScene("Dead"); // "DeadScene" ÊÇËÀÍö³¡¾°µÄÃû×Ö
+        SceneManager.LoadScene("Dead"); //"Dead"æ˜¯æ­»äº¡åœºæ™¯çš„åå­—
     }
-
-    // ÖØĞÂ¼ÓÔØËÀÍöÇ°µÄ¹Ø¿¨
+    
     public void ReloadLastLevel()
     {
         SceneManager.LoadScene(lastLevelIndex);
