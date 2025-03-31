@@ -11,13 +11,13 @@ public class playVideo : MonoBehaviour
     {
         Debug.Log("Video Play1!!");
         videoPlayer.Play();
-        while (videoPlayer.isPlaying)
+        while (videoPlayer.isPlaying) //wait for the video to play
         {
-            yield return null; // 等待视频播放
+            yield return null;
         }
         yield return new WaitForSeconds(1f);
 
-        // 切换到下一场景
+        // exchange to the next scene
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 }
