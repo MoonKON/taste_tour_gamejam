@@ -5,27 +5,24 @@ using UnityEngine;
 
 public class Left : MonoBehaviour
 {
-    [SerializeField] private float moveDistance = 5f; // ¿ÉÔÚ²Ù×÷Ì¨¸ü¸ÄµÄÒÆ¶¯¾àÀë
-    [SerializeField] private float speed = 2f;        // ¿ÉÔÚ²Ù×÷Ì¨¸ü¸ÄµÄËÙ¶È
+    [SerializeField] private float moveDistance = 5f; // å¯ç§»åŠ¨è·ç¦»
+    [SerializeField] private float speed = 2f;        // é€Ÿåº¦
 
     private Vector3 startPosition;
     private bool movingLeft = true;
 
     void Start()
     {
-        // ¼ÇÂ¼ÎïÌåµÄ³õÊ¼Î»ÖÃ
+        // è®°å½•åˆå§‹ä½ç½®
         startPosition = transform.position;
     }
 
     void Update()
     {
-        // ¸ù¾İ·½ÏòÅĞ¶ÏÎïÌåÊÇÏò×ó»¹ÊÇÏòÓÒÒÆ¶¯
         if (movingLeft)
         {
-            // Ïò×óÒÆ¶¯
             transform.position = Vector3.MoveTowards(transform.position, startPosition - new Vector3(moveDistance, 0, 0), speed * Time.deltaTime);
-
-            // Èç¹ûÎïÌåµ½´ïÁËÄ¿±ê¾àÀë£¬Ôò¸Ä±ä·½ÏòÎªÏòÓÒ
+            // å¦‚æœç‰©ä½“åˆ°è¾¾äº†ç›®æ ‡è·ç¦»ï¼Œåˆ™æ”¹å˜æ–¹å‘ä¸ºå‘å³
             if (Vector3.Distance(transform.position, startPosition - new Vector3(moveDistance, 0, 0)) < 0.1f)
             {
                 movingLeft = false;
@@ -33,10 +30,8 @@ public class Left : MonoBehaviour
         }
         else
         {
-            // ÏòÓÒÒÆ¶¯£¨·µ»Ø³õÊ¼Î»ÖÃ£©
             transform.position = Vector3.MoveTowards(transform.position, startPosition, speed * Time.deltaTime);
-
-            // Èç¹ûÎïÌå»Øµ½³õÊ¼Î»ÖÃ£¬Ôò¸Ä±ä·½ÏòÎªÏò×ó
+            // å¦‚æœç‰©ä½“å›åˆ°åˆå§‹ä½ç½®ï¼Œåˆ™æ”¹å˜æ–¹å‘ä¸ºå‘å·¦
             if (Vector3.Distance(transform.position, startPosition) < 0.1f)
             {
                 movingLeft = true;
