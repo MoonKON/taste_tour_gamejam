@@ -5,48 +5,41 @@ using UnityEngine.UI;
 
 public class EndGameHandler : MonoBehaviour
 {
-    [SerializeField] private Image fadeImage; // ÓÃÓÚºÚÆÁµ­³öµÄImage
-    [SerializeField] private float fadeDuration = 2f; // µ­³ö³ÖĞøÊ±¼ä
-    [SerializeField] private string nextSceneName; // ĞèÒª¼ÓÔØµÄÏÂÒ»¸ö³¡¾°Ãû³Æ
+    [SerializeField] private Image fadeImage; 
+    [SerializeField] private float fadeDuration = 2f; // æ·¡å‡ºæŒç»­æ—¶é—´
+    [SerializeField] private string nextSceneName; 
 
     private bool isGameEnding = false;
 
-    // Åö×²¼ì²â
     private void OnTriggerEnter2D(Collider2D other)
     {
-        // Èç¹û¼ì²âµ½µÄ×é¼şÓĞ "sea" ±êÇ©£¬²¢ÇÒÓÎÏ·ÉĞÎ´½áÊø
+        // å¦‚æœæ£€æµ‹åˆ°çš„ç»„ä»¶æœ‰ "sea" æ ‡ç­¾ï¼Œä¸”æ¸¸æˆæœªç»“æŸ
         if (other.CompareTag("Sea") && !isGameEnding)
         {
             Debug.Log("Sea touch!");
-            isGameEnding = true; // ·ÀÖ¹¶à´Î´¥·¢
+            isGameEnding = true;
             StartCoroutine(EndGame());
         }
     }
 
-    // ÓÎÏ·½áÊøĞ­³Ì
+    //ç»“æŸæ¸¸æˆ
     private IEnumerator EndGame()
     {
-        // ÔİÍ£ÓÎÏ·
         Time.timeScale = 0f;
-
-        // ¿ªÊ¼ºÚÆÁµ­³ö
-        yield return StartCoroutine(FadeOut());
-
-        // µÈ´ıµ­³öÍê³Éºó£¬¼ÓÔØÏÂÒ»¸ö³¡¾°
+        yield return StartCoroutine(FadeOut()); // å¼€å§‹é»‘å±æ·¡å‡º
+        // ç­‰å¾…æ·¡å‡ºå®Œæˆåï¼ŒåŠ è½½ä¸‹ä¸€ä¸ªåœºæ™¯
         SceneManager.LoadScene(nextSceneName);
     }
 
-    // ÊµÏÖºÚÆÁµ­³öĞ§¹ûµÄĞ­³Ì
+    // å®ç°é»‘å±æ·¡å‡ºæ•ˆæœ
     private IEnumerator FadeOut()
     {
         Color fadeColor = fadeImage.color;
         float fadeSpeed = 1f / fadeDuration;
         float fadeAmount = 0f;
-
-        // Ñ­»·¸Ä±äImageµÄAlphaÖµ£¬ÊµÏÖµ­³öĞ§¹û
         while (fadeAmount < 1f)
         {
-            fadeAmount += fadeSpeed * Time.unscaledDeltaTime; // Ê¹ÓÃunscaledDeltaTimeÒÔÊÊÓ¦Time.timeScaleÎª0
+            fadeAmount += fadeSpeed * Time.unscaledDeltaTime;
             fadeColor.a = Mathf.Clamp01(fadeAmount);
             fadeImage.color = fadeColor;
             yield return null;
