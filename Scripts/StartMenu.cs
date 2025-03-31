@@ -8,19 +8,19 @@ using UnityEngine.Video;
 
 public class StartMenu : MonoBehaviour
 {
-    public VideoPlayer videoPlayer; // ÍÏ¶¯ Video Player GameObject µ½ÕâÀï
+    public VideoPlayer videoPlayer;
     public RawImage rawImage;
 
     private void Start()
     {
-        // ½« Raw Image µÄÍ¸Ã÷¶ÈÉèÖÃÎª 0
+        // å°† Raw Image çš„é€æ˜åº¦è®¾ç½®ä¸º 0
         Color rawImageColor = rawImage.color;
         rawImageColor.a = 0f;
         rawImage.color = rawImageColor;
 
-        // ½« Video Player µÄÍ¼ÏñäÖÈ¾µ½ Raw Image
-        videoPlayer.targetTexture = new RenderTexture(1920, 1080, 0); // ´´½¨Ò»¸öäÖÈ¾ÎÆÀí
-        rawImage.texture = videoPlayer.targetTexture; // ½« Raw Image µÄÎÆÀíÉèÖÃÎªäÖÈ¾ÎÆÀí
+        // å°† Video Player çš„å›¾åƒæ¸²æŸ“åˆ° Raw Image
+        videoPlayer.targetTexture = new RenderTexture(1920, 1080, 0); 
+        rawImage.texture = videoPlayer.targetTexture;
     }
 
 
@@ -46,21 +46,19 @@ public class StartMenu : MonoBehaviour
             yield return null;
         }
 
-
         yield return new WaitForSeconds(1f);
 
         videoPlayer.Play();
 
-        // µÈ´ıÊÓÆµ²¥·ÅÍê³É
+        // ç­‰å¾…è§†é¢‘æ’­æ”¾å®Œæˆ
         while (videoPlayer.isPlaying)
         {
-            yield return null; // µÈ´ıÊÓÆµ²¥·Å
+            yield return null;
         }
 
-        // µÈ´ı 1 Ãë
+        // é—´éš”1sç¼“å†²
         yield return new WaitForSeconds(38f);
 
-        // ÇĞ»»µ½ÏÂÒ»³¡¾°
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
     }
